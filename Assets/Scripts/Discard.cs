@@ -15,7 +15,12 @@ public class Discard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (Card card in m_cards) {
+            if (card != m_cards[m_cards.Count-1])
+            {
+                card.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void AddCard(Card card, bool isFaceUp)
