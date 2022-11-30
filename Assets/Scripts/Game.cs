@@ -5,6 +5,10 @@ using TMPro;
 
 public class Game : MonoBehaviour
 {
+    //Game Management
+    public static bool isPlayer1Turn = true;
+    public static int turnNumber = 1;
+
     //Lane Management
     public static Card selectedCard;
     //P1
@@ -16,6 +20,8 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI P1Lane2Score;
     public TextMeshProUGUI P1Lane3Score;
 
+    public GameObject P1Cover;
+
     //P2
     public Lane P2Lane1;
     public Lane P2Lane2;
@@ -24,6 +30,8 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI P2Lane1Score;
     public TextMeshProUGUI P2Lane2Score;
     public TextMeshProUGUI P2Lane3Score;
+
+    public GameObject P2Cover;
 
     //deck
     public Deck m_deck;
