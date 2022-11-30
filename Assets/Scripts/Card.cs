@@ -16,7 +16,7 @@ public class Card : MonoBehaviour
     }
     public static readonly int[] s_value = new int[]
     {   //                                J   Q   K
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10
+        0, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10
     };
 
     public Suit m_suit = Suit.club;
@@ -123,7 +123,7 @@ public class Card : MonoBehaviour
         }
         else
         {
-            m_power_text.text = m_rank.ToString();
+            m_power_text.text = Card.s_value[m_rank].ToString();
         }
     }
 
@@ -145,9 +145,18 @@ public class Card : MonoBehaviour
         {
             iconName = "CardIcons/SpyIconScaled";
         }
-        else if (m_rank >= 10) {
+        else if (m_rank == 11) {
+            iconName = "CardIcons/MercenaryIconScaled";
+        }
+        else if (m_rank == 12)
+        {
+            iconName = "CardIcons/PriestIconScaled";
+        }
+        else if (m_rank == 13 || m_rank == 1)
+        {
             iconName = "CardIcons/KingIconScaled";
-        } else
+        }
+        else
         {
             iconName = "CardIcons/KnightIconScaled";
         }
@@ -183,17 +192,17 @@ public class Card : MonoBehaviour
     public void OnClick()
     {
         Game.selectedCard = this;
-        
-            // Turn the card over
-        
+
+        // Turn the card over
+
         if (m_isFrontShowing)
         {
-          canFlip = false;
+            canFlip = false;
         }
-        if(canFlip)
-        {
-            SetFaceUp(!m_isFrontShowing);
-        }
-        
+        //if(canFlip)
+        //{
+        //    SetFaceUp(!m_isFrontShowing);
+        //}
+
     }
 }

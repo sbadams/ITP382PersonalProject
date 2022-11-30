@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
     //Game Management
     public static bool isPlayer1Turn = true;
     public static int turnNumber = 1;
+    public static int movesLeft = 2;
+    public TextMeshProUGUI movesLeftText;
 
     //Lane Management
     public static Card selectedCard;
@@ -20,7 +23,7 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI P1Lane2Score;
     public TextMeshProUGUI P1Lane3Score;
 
-    public GameObject P1Cover;
+    public GameObject Player1Cover;
 
     //P2
     public Lane P2Lane1;
@@ -31,7 +34,7 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI P2Lane2Score;
     public TextMeshProUGUI P2Lane3Score;
 
-    public GameObject P2Cover;
+    public GameObject Player2Cover;
 
     //deck
     public Deck m_deck;
@@ -41,8 +44,9 @@ public class Game : MonoBehaviour
 
     //drag drop
     
-    public GameObject m_hitButton;
-    public GameObject m_stayButton;
+    public GameObject m_SummonButton;
+    public GameObject m_TradeButton;
+
     public GameObject m_win;
     public GameObject m_lose;
     public GameObject m_playAgain;
@@ -53,6 +57,49 @@ public class Game : MonoBehaviour
     private void Start()
     {
         StartCoroutine(DelayedDeal());
+    }
+
+    private void Update()
+    {
+        //Player Covers
+        if (isPlayer1Turn)
+        {
+            Player2Cover.SetActive(true);
+            Player1Cover.SetActive(false);
+        } else
+        {
+            Player1Cover.SetActive(true);
+            Player2Cover.SetActive(false);
+        }
+        //Movesleft
+        movesLeftText.text = movesLeft.ToString();
+
+        if (movesLeft <= 0)
+        {
+            m_SummonButton.gameObject.GetComponent<Button>().interactable = false;
+            m_TradeButton.gameObject.GetComponent<Button>().interactable = false;
+        } else
+        {
+            m_SummonButton.gameObject.GetComponent<Button>().interactable = true;
+            m_TradeButton.gameObject.GetComponent<Button>().interactable = true;
+        }
+    }
+
+    public void EndTurn()
+    {
+        if (isPlayer1Turn)
+        {
+            isPlayer1Turn = false;
+        } else
+        {
+            isPlayer1Turn = true;
+        }
+        movesLeft = 2;
+    }
+
+    public void UseMove()
+    {
+        movesLeft--;
     }
 
     IEnumerator DelayedDeal()
@@ -123,9 +170,9 @@ public class Game : MonoBehaviour
     public void PlayerStay()
     {
         // TODO deactivate the hit button
-        m_hitButton.gameObject.SetActive(false);
-        // deactivate the stay button
-        m_stayButton.gameObject.SetActive(false);
+        //m_hitButton.gameObject.SetActive(false);
+        //// deactivate the stay button
+        //m_stayButton.gameObject.SetActive(false);
         // call RevealAll() to reveal the dealer's hand
         P2Lane1.RevealAll();
         // activate the dealer's score display
@@ -142,8 +189,8 @@ public class Game : MonoBehaviour
         P2Lane1.Clear();
         P2Lane1Score.transform.parent.gameObject.SetActive(false);
         m_deck.Reset();
-        m_hitButton.SetActive(true);
-        m_stayButton.SetActive(true);
+        //m_hitButton.SetActive(true);
+        //m_stayButton.SetActive(true);
         Deal();
     }
 
