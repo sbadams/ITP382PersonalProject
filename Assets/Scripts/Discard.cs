@@ -56,4 +56,13 @@ public class Discard : MonoBehaviour
         m_cards[m_cards.Count - 1].gameObject.SetActive(false);
         m_cards.RemoveAt(m_cards.Count - 1);
     }
+
+    public void Reset()
+    {
+        foreach (Card card in m_cards)
+        {
+            Destroy(card.gameObject);
+        }
+        Start();
+    }
 }

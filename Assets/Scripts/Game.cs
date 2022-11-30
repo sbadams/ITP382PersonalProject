@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Game : MonoBehaviour
 {
+    //Scene
+    public string MainMenuSceneName;
+
     //Game Management
+    public static int overallP1Score = 0;
+    public static int overallP2Score = 0;
+    public TextMeshProUGUI overallScore;
+
     public static bool isPlayer1Turn = true;
     public static int turnNumber = 1;
     public static int movesLeft = 2;
@@ -50,13 +59,12 @@ public class Game : MonoBehaviour
     public GameObject m_SummonButton;
     public GameObject m_TradeButton;
 
-    public GameObject m_win;
-    public GameObject m_lose;
     public GameObject m_playAgain;
 
     int m_scorePlayer = 0;
     int m_scoreDealer = 0;
 
+    bool winCounted = false;
     private void Start()
     {
         StartCoroutine(DelayedDeal());
@@ -87,6 +95,8 @@ public class Game : MonoBehaviour
             m_TradeButton.gameObject.GetComponent<Button>().interactable = true;
         }
 
+        //Overall Score
+        overallScore.text = "P1: " + overallP1Score + " - " + "P2: " + overallP2Score;
         
     }
 
@@ -187,9 +197,20 @@ public class Game : MonoBehaviour
         if (p2Score > p1Score)
         {
             winText.text = "Player 2 Wins!";
+            if(!winCounted)
+            {
+                overallP2Score++;
+                winCounted = true;
+            }
         } else
         {
             winText.text = "Player 1 Wins!";
+            if (!winCounted)
+            {
+                overallP1Score++;
+                winCounted = true;
+            }
+            
         }
 
         winScreen.SetActive(true);
@@ -213,7 +234,6 @@ public class Game : MonoBehaviour
         P1Lane3.AddCard(m_deck.GetCard(), false);
         P1Lane3.AddCard(m_deck.GetCard(), false);
 
-        UpdatePlayerScore();
 
         // deal 2 cards to the dealer
         P2Lane1.AddCard(m_deck.GetCard(), false);
@@ -225,7 +245,6 @@ public class Game : MonoBehaviour
         P2Lane3.AddCard(m_deck.GetCard(), false);
         P2Lane3.AddCard(m_deck.GetCard(), false);
 
-        UpdateDealerScore();
     }
 
     public void SetSelectedCard(Card card)
@@ -246,118 +265,31 @@ public class Game : MonoBehaviour
 
     }
 
-    public void PlayerHit()
-    {
-        // TODO call GetCard() to get the next card from the deck and add it to the player's hand
-        // call UpdatePlayerScore() to recalculate the player's score
-        // if the player busts (score > 21), call PlayerStay()
-        P1Lane1.AddCard(m_deck.GetCard(), true);
-        UpdatePlayerScore();
-        if (P1Lane1.Score > 21)
-        {
-            //rip you lose you suck
-            PlayerStay();
-        }
-    }
-
-    public void PlayerStay()
-    {
-        // TODO deactivate the hit button
-        //m_hitButton.gameObject.SetActive(false);
-        //// deactivate the stay button
-        //m_stayButton.gameObject.SetActive(false);
-        // call RevealAll() to reveal the dealer's hand
-        P2Lane1.RevealAll();
-        // activate the dealer's score display
-        P2Lane1Score.gameObject.SetActive(true);
-        // start DealerTurn() as a coroutine
-        StartCoroutine(DealerTurn());
-    }
-
     public void PlayAgain()
     {
-        m_playAgain.SetActive(false);
+        winScreen.SetActive(false);
         P1Lane1.Clear();
-        P1Lane1Score.text = "0";
+        P1Lane2.Clear();
+        P1Lane3.Clear();
         P2Lane1.Clear();
-        P2Lane1Score.transform.parent.gameObject.SetActive(false);
+        P2Lane2.Clear();
+        P2Lane3.Clear();
+        winCounted = false;
+        //P2Lane1Score.transform.parent.gameObject.SetActive(false);
         m_deck.Reset();
+        m_discardPile.Reset();
         //m_hitButton.SetActive(true);
         //m_stayButton.SetActive(true);
+        movesLeft = 2;
+        isPlayer1Turn = true;
+        selectedCard = null;
+
         Deal();
+        m_deck.DiscardTopCard();
     }
 
-    void DealerHit()
+    public void ReturnToMainMenu()
     {
-        P2Lane1.AddCard(m_deck.GetCard(), true);
-        UpdateDealerScore();
-    }
-
-    int UpdatePlayerScore()
-    {
-        int score = P1Lane1.Score;
-        if (score > 21)
-            P1Lane1Score.text = "BUST!";
-        else
-            P1Lane1Score.text = score.ToString();
-        m_scorePlayer = score;
-        return score;
-    }
-
-    int UpdateDealerScore()
-    {
-        int score = P2Lane1.Score;
-        if (score > 21)
-            P2Lane1Score.text = "BUST!";
-        else
-            P2Lane1Score.text = score.ToString();
-        m_scoreDealer = score;
-        return score;
-    }
-
-    Animator PlayerWins()
-    {
-        m_win.SetActive(true);
-        Animator anim = m_win.GetComponent<Animator>();
-        anim.Play("Win", -1, 0.0f);
-        return anim;
-    }
-
-    Animator PlayerLoses()
-    {
-        m_lose.SetActive(true);
-        Animator anim = m_lose.GetComponent<Animator>();
-        anim.Play("Lose", -1, 0.0f);
-        return anim;
-    }
-
-    IEnumerator DealerTurn()
-    {
-        while (m_scoreDealer < 17)
-        {
-            yield return new WaitForSecondsRealtime(1.0f);
-            DealerHit();
-        }
-        Animator anim = null;
-        if (m_scorePlayer > 21)
-        {   // player bust
-            anim = PlayerLoses();
-        }
-        else if (m_scoreDealer > 21)
-        {   // dealer bust
-            anim = PlayerWins();
-        }
-        else if (m_scorePlayer > m_scoreDealer)
-        {   // player's score is higher
-            anim = PlayerWins();
-        }
-        else
-        {   // dealer's score is higher
-            anim = PlayerLoses();
-        }
-        var state = anim.GetCurrentAnimatorStateInfo(0);
-        float duration = state.length;
-        yield return new WaitForSeconds(duration);
-        m_playAgain.SetActive(true);
+        SceneManager.LoadScene(MainMenuSceneName);
     }
 }

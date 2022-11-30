@@ -10,11 +10,13 @@ public class Lane : MonoBehaviour
     public bool isPlayer1 = true;
     public int Score;
     private TextMeshProUGUI scoreText;
-
+    public bool suitBonus = false;
     public List<Card> m_cards = new List<Card>();
 
     private void Update()
     {
+
+        suitBonus = CheckSuitBonus();
         Score = CalculateLaneScore();
         scoreText.text = Score.ToString();
     }
@@ -43,6 +45,21 @@ public class Lane : MonoBehaviour
         m_cards.Add(card);
     }
 
+    public bool CheckSuitBonus()
+    {
+        if (m_cards.Count > 0)
+        {
+            if (m_cards[0].m_isFrontShowing && m_cards[1].m_isFrontShowing)
+            {
+                if (m_cards[0].m_suit == m_cards[1].m_suit)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
     public void AddCardAtSlot(Card card, int index)
     {
         card.transform.SetParent(transform, false);
@@ -90,6 +107,13 @@ public class Lane : MonoBehaviour
             }
         }
 
+        //suit bonus
+        if (suitBonus)
+        {
+            score += 5;
+            m_cards[0].GetComponent<Animator>().SetTrigger("Attack");
+            m_cards[1].GetComponent<Animator>().SetTrigger("Attack");
+        }
 
         return score;
     }
