@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Deck : MonoBehaviour
 {
     public GameObject m_cardPrefab;
+    public Discard DiscardPile;
 
     List<Card> m_cards;
 
@@ -21,12 +22,6 @@ public class Deck : MonoBehaviour
                 CreateCard((Card.Suit)suit, rank);
             }
         }
-#if false
-        {   // don't forget the jokers
-            CreateCard(Card.Suit.none, 0);
-            CreateCard(Card.Suit.none, 1);
-        }
-#endif
         
         Shuffle();
     }
@@ -54,9 +49,6 @@ public class Deck : MonoBehaviour
             m_cards[n] = m_cards[index];
             m_cards[index] = temp;
         }
-
-
-        // TODO shuffle the deck
     }
 
     public Card GetCard()
@@ -65,6 +57,9 @@ public class Deck : MonoBehaviour
         // TODO take the next card if there is one
         if (m_cards.Count <= 0)
         {
+            // if we're out of cards, gray out the deck image
+            Image image = GetComponent<Image>();
+            image.color = new Color(0.1f, 0.1f, 0.1f, 0.5f);
             return null;
         } 
         else
@@ -73,13 +68,13 @@ public class Deck : MonoBehaviour
             m_cards.RemoveAt(m_cards.Count - 1);
             card.gameObject.SetActive(true);
         }
-        
-        if (m_cards.Count <= 0)
-        {   // if we're out of cards, gray out the deck image
-            Image image = GetComponent<Image>();
-            image.color = new Color(0.1f, 0.1f, 0.1f, 0.5f);
-        }
+
         return card;
+    }
+
+    public void DiscardTopCard()
+    {
+        DiscardPile.AddCard(GetCard(), true);
     }
 
     public void Reset()

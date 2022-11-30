@@ -5,10 +5,26 @@ using TMPro;
 
 public class Game : MonoBehaviour
 {
-    public Hand m_playerHand;
-    public TextMeshProUGUI m_playerScore;
-    public Hand m_dealerHand;
-    public TextMeshProUGUI m_dealerScore;
+    //Lane Management
+
+    //P1
+    public Lane P1Lane1;
+    public Lane P1Lane2;
+    public Lane P1Lane3;
+
+    public TextMeshProUGUI P1Lane1Score;
+    public TextMeshProUGUI P1Lane2Score;
+    public TextMeshProUGUI P1Lane3Score;
+
+    //P2
+    public Lane P2Lane1;
+    public Lane P2Lane2;
+    public Lane P2Lane3;
+
+    public TextMeshProUGUI P2Lane1Score;
+    public TextMeshProUGUI P2Lane2Score;
+    public TextMeshProUGUI P2Lane3Score;
+
     public Deck m_deck;
     public GameObject m_hitButton;
     public GameObject m_stayButton;
@@ -21,7 +37,6 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        m_dealerScore.transform.parent.gameObject.SetActive(false);  // hide the dealer's score
         StartCoroutine(DelayedDeal());
     }
 
@@ -33,14 +48,28 @@ public class Game : MonoBehaviour
 
     void Deal()
     {
-        // deal 2 cards to the player
-        m_playerHand.AddCard(m_deck.GetCard(), true);
-        m_playerHand.AddCard(m_deck.GetCard(), true);
+        // deal 2 cards to the player in each lane
+        P1Lane1.AddCard(m_deck.GetCard(), false);
+        P1Lane1.AddCard(m_deck.GetCard(), false);
+
+        P1Lane2.AddCard(m_deck.GetCard(), false);
+        P1Lane2.AddCard(m_deck.GetCard(), false);
+
+        P1Lane3.AddCard(m_deck.GetCard(), false);
+        P1Lane3.AddCard(m_deck.GetCard(), false);
+
         UpdatePlayerScore();
 
         // deal 2 cards to the dealer
-        m_dealerHand.AddCard(m_deck.GetCard(), true);
-        m_dealerHand.AddCard(m_deck.GetCard(), false);
+        P2Lane1.AddCard(m_deck.GetCard(), false);
+        P2Lane1.AddCard(m_deck.GetCard(), false);
+
+        P2Lane2.AddCard(m_deck.GetCard(), false);
+        P2Lane2.AddCard(m_deck.GetCard(), false);
+
+        P2Lane3.AddCard(m_deck.GetCard(), false);
+        P2Lane3.AddCard(m_deck.GetCard(), false);
+
         UpdateDealerScore();
     }
 
@@ -49,9 +78,9 @@ public class Game : MonoBehaviour
         // TODO call GetCard() to get the next card from the deck and add it to the player's hand
         // call UpdatePlayerScore() to recalculate the player's score
         // if the player busts (score > 21), call PlayerStay()
-        m_playerHand.AddCard(m_deck.GetCard(), true);
+        P1Lane1.AddCard(m_deck.GetCard(), true);
         UpdatePlayerScore();
-        if (m_playerHand.Score() > 21)
+        if (P1Lane1.Score() > 21)
         {
             //rip you lose you suck
             PlayerStay();
@@ -65,9 +94,9 @@ public class Game : MonoBehaviour
         // deactivate the stay button
         m_stayButton.gameObject.SetActive(false);
         // call RevealAll() to reveal the dealer's hand
-        m_dealerHand.RevealAll();
+        P2Lane1.RevealAll();
         // activate the dealer's score display
-        m_dealerScore.gameObject.SetActive(true);
+        P2Lane1Score.gameObject.SetActive(true);
         // start DealerTurn() as a coroutine
         StartCoroutine(DealerTurn());
     }
@@ -75,10 +104,10 @@ public class Game : MonoBehaviour
     public void PlayAgain()
     {
         m_playAgain.SetActive(false);
-        m_playerHand.Clear();
-        m_playerScore.text = "0";
-        m_dealerHand.Clear();
-        m_dealerScore.transform.parent.gameObject.SetActive(false);
+        P1Lane1.Clear();
+        P1Lane1Score.text = "0";
+        P2Lane1.Clear();
+        P2Lane1Score.transform.parent.gameObject.SetActive(false);
         m_deck.Reset();
         m_hitButton.SetActive(true);
         m_stayButton.SetActive(true);
@@ -87,28 +116,28 @@ public class Game : MonoBehaviour
 
     void DealerHit()
     {
-        m_dealerHand.AddCard(m_deck.GetCard(), true);
+        P2Lane1.AddCard(m_deck.GetCard(), true);
         UpdateDealerScore();
     }
 
     int UpdatePlayerScore()
     {
-        int score = m_playerHand.Score();
+        int score = P1Lane1.Score();
         if (score > 21)
-            m_playerScore.text = "BUST!";
+            P1Lane1Score.text = "BUST!";
         else
-            m_playerScore.text = score.ToString();
+            P1Lane1Score.text = score.ToString();
         m_scorePlayer = score;
         return score;
     }
 
     int UpdateDealerScore()
     {
-        int score = m_dealerHand.Score();
+        int score = P2Lane1.Score();
         if (score > 21)
-            m_dealerScore.text = "BUST!";
+            P2Lane1Score.text = "BUST!";
         else
-            m_dealerScore.text = score.ToString();
+            P2Lane1Score.text = score.ToString();
         m_scoreDealer = score;
         return score;
     }

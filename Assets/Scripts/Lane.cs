@@ -2,16 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hand : MonoBehaviour
+public class Lane : MonoBehaviour
 {
     public float m_spacing = 8.0f;
+    public GameObject CardPos1;
+    public GameObject CardPos2;
 
     List<Card> m_cards = new List<Card>();
 
     public void AddCard(Card card, bool isFaceUp)
     {
         card.transform.SetParent(transform, false);
-        card.transform.localPosition = new Vector3(m_spacing * m_cards.Count, 0.0f, 0.0f);
+        if (m_cards.Count > 0)
+        {
+            card.transform.localPosition = CardPos2.transform.localPosition;
+        }
+        else
+        {
+            card.transform.localPosition = CardPos1.transform.localPosition;
+        }
         card.SetFaceUp(isFaceUp);
         m_cards.Add(card);
     }
