@@ -14,20 +14,27 @@ public class Card : MonoBehaviour
         spade,
         none
     }
-
     public static readonly int[] s_value = new int[]
     {   //                                J   Q   K
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10
     };
+
     public Suit m_suit = Suit.club;
     public int m_rank = 1;  // ace=1, king=13, joker=0 or 1
 
-    Image m_image;
+    public int laneIndex = 0;
 
+
+    public Game gameManager;
+
+    Image m_image;
     Image m_icon;
     Image m_suit_image;
 
     TextMeshProUGUI m_power_text;
+
+    bool isSelected = false;
+    bool canFlip = true;
 
     Sprite m_backSprite;
     Sprite m_frontSprite;
@@ -44,6 +51,7 @@ public class Card : MonoBehaviour
 
     private void Update()
     {
+        checkHighlight();
         LoadText();
         LoadSuit();
     }
@@ -62,6 +70,17 @@ public class Card : MonoBehaviour
         m_backSprite = Resources.Load<Sprite>("CardIcons/spirit");
 
         LoadImage();    
+    }
+
+    void checkHighlight()
+    {
+        if (this == Game.selectedCard)
+        {
+            gameObject.transform.Find("Highlight").gameObject.SetActive(true);
+        } else
+        {
+            gameObject.transform.Find("Highlight").gameObject.SetActive(false);
+        }
     }
 
     void LoadSuit()
@@ -163,8 +182,18 @@ public class Card : MonoBehaviour
 
     public void OnClick()
     {
+        Game.selectedCard = this;
+        
             // Turn the card over
+        
+        if (m_isFrontShowing)
+        {
+          canFlip = false;
+        }
+        if(canFlip)
+        {
             SetFaceUp(!m_isFrontShowing);
-
+        }
+        
     }
 }

@@ -24,6 +24,7 @@ public class Deck : MonoBehaviour
         }
         
         Shuffle();
+        DiscardTopCard();
     }
 
     GameObject CreateCard(Card.Suit suit, int rank)

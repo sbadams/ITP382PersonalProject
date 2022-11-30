@@ -6,7 +6,7 @@ using TMPro;
 public class Game : MonoBehaviour
 {
     //Lane Management
-
+    public static Card selectedCard;
     //P1
     public Lane P1Lane1;
     public Lane P1Lane2;
@@ -25,7 +25,14 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI P2Lane2Score;
     public TextMeshProUGUI P2Lane3Score;
 
+    //deck
     public Deck m_deck;
+
+    //discard
+    public Discard m_discardPile;
+
+    //drag drop
+    
     public GameObject m_hitButton;
     public GameObject m_stayButton;
     public GameObject m_win;
@@ -73,6 +80,24 @@ public class Game : MonoBehaviour
         UpdateDealerScore();
     }
 
+    public void SetSelectedCard(Card card)
+    {
+        selectedCard = card;
+    }
+
+    //player functions
+    public void TradeCardWithDiscard()
+    {
+
+        //putting discard card into selected slot
+        selectedCard.GetComponentInParent<Lane>().AddCardAtSlot(m_discardPile.GetCard(), selectedCard.laneIndex);
+        selectedCard.GetComponentInParent<Lane>().RemoveCard(selectedCard);
+
+        //putting selected card in discard pile
+        m_discardPile.AddCard(selectedCard, true);
+
+    }
+
     public void PlayerHit()
     {
         // TODO call GetCard() to get the next card from the deck and add it to the player's hand
@@ -80,7 +105,7 @@ public class Game : MonoBehaviour
         // if the player busts (score > 21), call PlayerStay()
         P1Lane1.AddCard(m_deck.GetCard(), true);
         UpdatePlayerScore();
-        if (P1Lane1.Score() > 21)
+        if (P1Lane1.Score > 21)
         {
             //rip you lose you suck
             PlayerStay();
@@ -122,7 +147,7 @@ public class Game : MonoBehaviour
 
     int UpdatePlayerScore()
     {
-        int score = P1Lane1.Score();
+        int score = P1Lane1.Score;
         if (score > 21)
             P1Lane1Score.text = "BUST!";
         else
@@ -133,7 +158,7 @@ public class Game : MonoBehaviour
 
     int UpdateDealerScore()
     {
-        int score = P2Lane1.Score();
+        int score = P2Lane1.Score;
         if (score > 21)
             P2Lane1Score.text = "BUST!";
         else
