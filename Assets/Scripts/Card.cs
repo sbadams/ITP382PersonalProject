@@ -38,7 +38,7 @@ public class Card : MonoBehaviour
 
     Sprite m_backSprite;
     Sprite m_frontSprite;
-    bool m_isFrontShowing = false;
+    public bool m_isFrontShowing = false;
 
     public static readonly string[] s_suitName = new string[]
     {
@@ -191,8 +191,11 @@ public class Card : MonoBehaviour
 
     public void OnClick()
     {
-        Game.selectedCard = this;
-
+        if (m_isFrontShowing == false)
+        {
+            Game.selectedCard = this;
+        }
+        
         // Turn the card over
 
         if (m_isFrontShowing)

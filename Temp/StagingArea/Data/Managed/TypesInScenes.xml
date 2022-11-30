@@ -6,6 +6,7 @@
 		<type fullname="Discard" preserve="nothing"/>
 		<type fullname="Game" preserve="nothing"/>
 		<type fullname="Lane" preserve="nothing"/>
+		<type fullname="RotateOnP2" preserve="nothing"/>
 	</assembly>
 	<assembly fullname="Unity.TextMeshPro">
 		<type fullname="TMPro.TextMeshProUGUI" preserve="nothing"/>

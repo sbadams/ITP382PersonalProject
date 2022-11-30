@@ -42,8 +42,11 @@ public class Game : MonoBehaviour
     //discard
     public Discard m_discardPile;
 
-    //drag drop
-    
+    //WinScreen
+    public GameObject winScreen;
+    public TextMeshProUGUI winText;
+
+    //Buttons
     public GameObject m_SummonButton;
     public GameObject m_TradeButton;
 
@@ -83,6 +86,17 @@ public class Game : MonoBehaviour
             m_SummonButton.gameObject.GetComponent<Button>().interactable = true;
             m_TradeButton.gameObject.GetComponent<Button>().interactable = true;
         }
+
+        
+    }
+
+    private void LateUpdate()
+    {
+        if (turnNumber > 2)
+        {
+            CheckGameEnd();
+        }
+        
     }
 
     public void EndTurn()
@@ -95,11 +109,90 @@ public class Game : MonoBehaviour
             isPlayer1Turn = true;
         }
         movesLeft = 2;
+        turnNumber++;
     }
 
     public void UseMove()
     {
         movesLeft--;
+    }
+
+    public void CheckGameEnd()
+    {
+        //p1 has all cards showing
+        if (P1Lane1.m_cards[0].m_isFrontShowing && P1Lane1.m_cards[1].m_isFrontShowing
+            && P1Lane2.m_cards[0].m_isFrontShowing && P1Lane2.m_cards[1].m_isFrontShowing
+            && P1Lane3.m_cards[0].m_isFrontShowing && P1Lane3.m_cards[1].m_isFrontShowing)
+        {
+            P2Lane1.m_cards[0].SetFaceUp(true);
+            P2Lane1.m_cards[1].SetFaceUp(true);
+            P2Lane2.m_cards[0].SetFaceUp(true);
+            P2Lane2.m_cards[1].SetFaceUp(true);
+            P2Lane3.m_cards[0].SetFaceUp(true);
+            P2Lane3.m_cards[1].SetFaceUp(true);
+
+            ScoreEachLane();
+            Debug.Log("Game Over");
+        }
+
+        //p2 has all cards showing
+        if (P2Lane1.m_cards[0].m_isFrontShowing && P2Lane1.m_cards[1].m_isFrontShowing
+            && P2Lane2.m_cards[0].m_isFrontShowing && P2Lane2.m_cards[1].m_isFrontShowing
+            && P2Lane3.m_cards[0].m_isFrontShowing && P2Lane3.m_cards[1].m_isFrontShowing)
+        {
+            P1Lane1.m_cards[0].SetFaceUp(true);
+            P1Lane1.m_cards[1].SetFaceUp(true);
+            P1Lane2.m_cards[0].SetFaceUp(true);
+            P1Lane2.m_cards[1].SetFaceUp(true);
+            P1Lane3.m_cards[0].SetFaceUp(true);
+            P1Lane3.m_cards[1].SetFaceUp(true);
+
+            ScoreEachLane();
+            Debug.Log("Game Over");
+        }
+
+    }
+    public void ScoreEachLane()
+    {
+        int p1Score = 0;
+        int p2Score = 0;
+
+        //Lane1
+        if (P1Lane1.Score > P2Lane1.Score)
+        {
+            p1Score++;
+        } else if (P1Lane1.Score < P2Lane1.Score)
+        {
+            p2Score++;
+        }
+        //Lane2
+        if (P1Lane2.Score > P2Lane2.Score)
+        {
+            p1Score++;
+        }
+        else if (P1Lane2.Score < P2Lane2.Score)
+        {
+            p2Score++;
+        }
+        //Lane3
+        if (P1Lane3.Score > P2Lane3.Score)
+        {
+            p1Score++;
+        }
+        else if (P1Lane3.Score < P2Lane3.Score)
+        {
+            p2Score++;
+        }
+
+        if (p2Score > p1Score)
+        {
+            winText.text = "Player 2 Wins!";
+        } else
+        {
+            winText.text = "Player 1 Wins!";
+        }
+
+        winScreen.SetActive(true);
     }
 
     IEnumerator DelayedDeal()

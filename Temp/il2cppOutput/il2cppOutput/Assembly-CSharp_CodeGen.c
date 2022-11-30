@@ -78,79 +78,95 @@ extern void DragDrop_OnDrag_m66843E500FB5601B0C526881781E743DACA78302 (void);
 extern void DragDrop__ctor_mE5A2331828F64E1B46DA7C6AC3CC64A1D6721707 (void);
 // 0x00000021 System.Void Game::Start()
 extern void Game_Start_m81FFBF966FD86236D5383C0295E70170EAE3F1DB (void);
-// 0x00000022 System.Collections.IEnumerator Game::DelayedDeal()
+// 0x00000022 System.Void Game::Update()
+extern void Game_Update_mA1557241B926376A448DF2A57135D7BD10A5A51F (void);
+// 0x00000023 System.Void Game::LateUpdate()
+extern void Game_LateUpdate_m06394D9938CDF3F68DD3222DF107F6DBB0B8BC2F (void);
+// 0x00000024 System.Void Game::EndTurn()
+extern void Game_EndTurn_mEB9CA0B7521C958A5C986B6096D51F2B74C6B0F4 (void);
+// 0x00000025 System.Void Game::UseMove()
+extern void Game_UseMove_m80AA2D409F9F36C16A6AF5FDD7915A78AD705FD8 (void);
+// 0x00000026 System.Void Game::CheckGameEnd()
+extern void Game_CheckGameEnd_m3A9B434009842A3EC8DA75DA8C1BC416AB55C436 (void);
+// 0x00000027 System.Collections.IEnumerator Game::DelayedDeal()
 extern void Game_DelayedDeal_m5F7D56B4A9F24FE8D5F7DFD29EF42F6FA2B48128 (void);
-// 0x00000023 System.Void Game::Deal()
+// 0x00000028 System.Void Game::Deal()
 extern void Game_Deal_m4AD78B7ABDFDAE2231636476BBC27BDDA5B3DEA6 (void);
-// 0x00000024 System.Void Game::SetSelectedCard(Card)
+// 0x00000029 System.Void Game::SetSelectedCard(Card)
 extern void Game_SetSelectedCard_m1ABD6CD64F9C28404A2482FB2F20D5843DF5A972 (void);
-// 0x00000025 System.Void Game::TradeCardWithDiscard()
+// 0x0000002A System.Void Game::TradeCardWithDiscard()
 extern void Game_TradeCardWithDiscard_mD16743257B15AC47F616BF4F4C058E3BF4088993 (void);
-// 0x00000026 System.Void Game::PlayerHit()
+// 0x0000002B System.Void Game::PlayerHit()
 extern void Game_PlayerHit_mB817A61504843BC369CF598A07ADBCF4729B2A44 (void);
-// 0x00000027 System.Void Game::PlayerStay()
+// 0x0000002C System.Void Game::PlayerStay()
 extern void Game_PlayerStay_m6E9D476591342F4C02E5B73583442F151F63102A (void);
-// 0x00000028 System.Void Game::PlayAgain()
+// 0x0000002D System.Void Game::PlayAgain()
 extern void Game_PlayAgain_m1DC3875613040786DD2C1B18761B1286BF50071E (void);
-// 0x00000029 System.Void Game::DealerHit()
+// 0x0000002E System.Void Game::DealerHit()
 extern void Game_DealerHit_mC97F21CF531C8C2109558F4593FB16B051F903BC (void);
-// 0x0000002A System.Int32 Game::UpdatePlayerScore()
+// 0x0000002F System.Int32 Game::UpdatePlayerScore()
 extern void Game_UpdatePlayerScore_mA67E3B5EB8709E2AB58BF1C3BA83CE08DFB45F9E (void);
-// 0x0000002B System.Int32 Game::UpdateDealerScore()
+// 0x00000030 System.Int32 Game::UpdateDealerScore()
 extern void Game_UpdateDealerScore_m24090EB89DD3B69ADFE8BE880FD89A5DB1395FB3 (void);
-// 0x0000002C UnityEngine.Animator Game::PlayerWins()
+// 0x00000031 UnityEngine.Animator Game::PlayerWins()
 extern void Game_PlayerWins_m95956853306A744D49ED8507BA6BBA8A868270F9 (void);
-// 0x0000002D UnityEngine.Animator Game::PlayerLoses()
+// 0x00000032 UnityEngine.Animator Game::PlayerLoses()
 extern void Game_PlayerLoses_m15932F20C02DD35AAF93AF96A35F261E4DF5E333 (void);
-// 0x0000002E System.Collections.IEnumerator Game::DealerTurn()
+// 0x00000033 System.Collections.IEnumerator Game::DealerTurn()
 extern void Game_DealerTurn_m029125C757928C7788E233FF1B6E94C50FF8069B (void);
-// 0x0000002F System.Void Game::.ctor()
+// 0x00000034 System.Void Game::.ctor()
 extern void Game__ctor_m22BD482E0EC7CE99133FCF5EEF21DBC98A0BE5C3 (void);
-// 0x00000030 System.Void Game/<DelayedDeal>d__23::.ctor(System.Int32)
-extern void U3CDelayedDealU3Ed__23__ctor_mA292A85593E713DB06FFC43807EF634D64266A17 (void);
-// 0x00000031 System.Void Game/<DelayedDeal>d__23::System.IDisposable.Dispose()
-extern void U3CDelayedDealU3Ed__23_System_IDisposable_Dispose_m6C6139BCB09FFE7DEA7CBC5D84736A702EE58603 (void);
-// 0x00000032 System.Boolean Game/<DelayedDeal>d__23::MoveNext()
-extern void U3CDelayedDealU3Ed__23_MoveNext_m5506432AAE4B78392982CAD734334374DAA1B139 (void);
-// 0x00000033 System.Object Game/<DelayedDeal>d__23::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
-extern void U3CDelayedDealU3Ed__23_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mCF4350DD7698E89B8DC5A9C8B46449D4BC3DF2E2 (void);
-// 0x00000034 System.Void Game/<DelayedDeal>d__23::System.Collections.IEnumerator.Reset()
-extern void U3CDelayedDealU3Ed__23_System_Collections_IEnumerator_Reset_mB4D99A67CBE7C18AE7904F99B2B964F2800D9B30 (void);
-// 0x00000035 System.Object Game/<DelayedDeal>d__23::System.Collections.IEnumerator.get_Current()
-extern void U3CDelayedDealU3Ed__23_System_Collections_IEnumerator_get_Current_mF159F95857FAC59984EFFD834AD0611A4509DBB7 (void);
-// 0x00000036 System.Void Game/<DealerTurn>d__35::.ctor(System.Int32)
-extern void U3CDealerTurnU3Ed__35__ctor_m372EF614CE830F8A8BD5A5B3F8E97C885F90A843 (void);
-// 0x00000037 System.Void Game/<DealerTurn>d__35::System.IDisposable.Dispose()
-extern void U3CDealerTurnU3Ed__35_System_IDisposable_Dispose_m3B612EE776AAB4D5A76BCB5AA26CD105CB734C6E (void);
-// 0x00000038 System.Boolean Game/<DealerTurn>d__35::MoveNext()
-extern void U3CDealerTurnU3Ed__35_MoveNext_mC77147F21560F6F97269F4A7A43E4F8C1E73563B (void);
-// 0x00000039 System.Object Game/<DealerTurn>d__35::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
-extern void U3CDealerTurnU3Ed__35_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mDD74746E8170C64A4DE49E1EFEDB18A604E0E29D (void);
-// 0x0000003A System.Void Game/<DealerTurn>d__35::System.Collections.IEnumerator.Reset()
-extern void U3CDealerTurnU3Ed__35_System_Collections_IEnumerator_Reset_m574E1042D61DF7971E22A97587DD9DF6DA44DEE5 (void);
-// 0x0000003B System.Object Game/<DealerTurn>d__35::System.Collections.IEnumerator.get_Current()
-extern void U3CDealerTurnU3Ed__35_System_Collections_IEnumerator_get_Current_m360154DBB8EC2A97676FF825A08DDD6355FEB9F9 (void);
-// 0x0000003C System.Void Lane::Update()
+// 0x00000035 System.Void Game::.cctor()
+extern void Game__cctor_mC8BD84E58390524723FED3A5E64AA55D118F2A19 (void);
+// 0x00000036 System.Void Game/<DelayedDeal>d__34::.ctor(System.Int32)
+extern void U3CDelayedDealU3Ed__34__ctor_m4057C1FED35800C92B15FD48AD668106E9773BF8 (void);
+// 0x00000037 System.Void Game/<DelayedDeal>d__34::System.IDisposable.Dispose()
+extern void U3CDelayedDealU3Ed__34_System_IDisposable_Dispose_mAD126344DBC346AA387B804AA51C10BDFECE559A (void);
+// 0x00000038 System.Boolean Game/<DelayedDeal>d__34::MoveNext()
+extern void U3CDelayedDealU3Ed__34_MoveNext_mCA0A6A5D3BE894CB1B695A7B2E66844B430A562D (void);
+// 0x00000039 System.Object Game/<DelayedDeal>d__34::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
+extern void U3CDelayedDealU3Ed__34_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m5462A6C3891CA039B3173C03DA5E588672AF4D9F (void);
+// 0x0000003A System.Void Game/<DelayedDeal>d__34::System.Collections.IEnumerator.Reset()
+extern void U3CDelayedDealU3Ed__34_System_Collections_IEnumerator_Reset_m56BB11D9F3EFE63B3E76E2F905EA9EC8F522D996 (void);
+// 0x0000003B System.Object Game/<DelayedDeal>d__34::System.Collections.IEnumerator.get_Current()
+extern void U3CDelayedDealU3Ed__34_System_Collections_IEnumerator_get_Current_m6E95DD53A907A568D73904A5AD87EB77B46D7821 (void);
+// 0x0000003C System.Void Game/<DealerTurn>d__46::.ctor(System.Int32)
+extern void U3CDealerTurnU3Ed__46__ctor_m68C855543C6357B1CC7A95917DF6343C5066C0EB (void);
+// 0x0000003D System.Void Game/<DealerTurn>d__46::System.IDisposable.Dispose()
+extern void U3CDealerTurnU3Ed__46_System_IDisposable_Dispose_m435CB2A6E1FE8D0C85F383676D93A9D2EABC9B7A (void);
+// 0x0000003E System.Boolean Game/<DealerTurn>d__46::MoveNext()
+extern void U3CDealerTurnU3Ed__46_MoveNext_m88D1607491B43021C04BFE00C466E7B15B5F6FC7 (void);
+// 0x0000003F System.Object Game/<DealerTurn>d__46::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
+extern void U3CDealerTurnU3Ed__46_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m7B2B2CC4418486D4A13C7B3BC4213D96FE7192A2 (void);
+// 0x00000040 System.Void Game/<DealerTurn>d__46::System.Collections.IEnumerator.Reset()
+extern void U3CDealerTurnU3Ed__46_System_Collections_IEnumerator_Reset_m2CBEC431AC43DFA02A142FE1973ED91B6D66F998 (void);
+// 0x00000041 System.Object Game/<DealerTurn>d__46::System.Collections.IEnumerator.get_Current()
+extern void U3CDealerTurnU3Ed__46_System_Collections_IEnumerator_get_Current_mAFC1514B554EB59ED9F5C30C3C55E4D869D598AA (void);
+// 0x00000042 System.Void Lane::Update()
 extern void Lane_Update_m78C77718DB223E7F6C8FF164ACD1399FCDF9AB01 (void);
-// 0x0000003D System.Void Lane::Awake()
+// 0x00000043 System.Void Lane::Awake()
 extern void Lane_Awake_m56CD889A531F3C7257C3EF1F08825451FF899CD9 (void);
-// 0x0000003E System.Void Lane::AddCard(Card,System.Boolean)
+// 0x00000044 System.Void Lane::AddCard(Card,System.Boolean)
 extern void Lane_AddCard_m54BE89224E3DAC141A3910F4C2F9C6350858993C (void);
-// 0x0000003F System.Void Lane::AddCardAtSlot(Card,System.Int32)
+// 0x00000045 System.Void Lane::AddCardAtSlot(Card,System.Int32)
 extern void Lane_AddCardAtSlot_mB1A77513885B86F1AA7B2DBF5743CD0ECFE160C9 (void);
-// 0x00000040 System.Int32 Lane::CalculateLaneScore()
+// 0x00000046 System.Int32 Lane::CalculateLaneScore()
 extern void Lane_CalculateLaneScore_mCA3718F2964AC2458AA2A248FA8D4D367C362CDC (void);
-// 0x00000041 System.Int32 Lane::NumCards()
+// 0x00000047 System.Int32 Lane::NumCards()
 extern void Lane_NumCards_m8A993BD55AF9C5B3A0020869CC149067D682D0D8 (void);
-// 0x00000042 System.Void Lane::RemoveCard(Card)
+// 0x00000048 System.Void Lane::RemoveCard(Card)
 extern void Lane_RemoveCard_m4D0CC3016F398A96F289ECE2DDCD42054D28C2F7 (void);
-// 0x00000043 System.Void Lane::RevealAll()
+// 0x00000049 System.Void Lane::RevealAll()
 extern void Lane_RevealAll_mDDD5E0BAC5AAA49D0673A53BF27147C24E8EB3FC (void);
-// 0x00000044 System.Void Lane::Clear()
+// 0x0000004A System.Void Lane::Clear()
 extern void Lane_Clear_mE5868293611903693FF0F6324F7E3918DFA143C4 (void);
-// 0x00000045 System.Void Lane::.ctor()
+// 0x0000004B System.Void Lane::.ctor()
 extern void Lane__ctor_m429A1FF8F33D7D8793D9D568809A85C48888BE2B (void);
-static Il2CppMethodPointer s_methodPointers[69] = 
+// 0x0000004C System.Void RotateOnP2::Update()
+extern void RotateOnP2_Update_m7AF52B0E7479CAAC5FFD8378A6412E9F83E4E9D0 (void);
+// 0x0000004D System.Void RotateOnP2::.ctor()
+extern void RotateOnP2__ctor_m073C2A68E90D64E4579A8B431D141460B92F8CD1 (void);
+static Il2CppMethodPointer s_methodPointers[77] = 
 {
 	Card_Update_mD62A8B17A3C8FDC5A21B426125B242ACD1004AB6,
 	Card_Awake_m39569145B6FC8D829CD31A8B249FCC3E83E3166E,
@@ -185,6 +201,11 @@ static Il2CppMethodPointer s_methodPointers[69] =
 	DragDrop_OnDrag_m66843E500FB5601B0C526881781E743DACA78302,
 	DragDrop__ctor_mE5A2331828F64E1B46DA7C6AC3CC64A1D6721707,
 	Game_Start_m81FFBF966FD86236D5383C0295E70170EAE3F1DB,
+	Game_Update_mA1557241B926376A448DF2A57135D7BD10A5A51F,
+	Game_LateUpdate_m06394D9938CDF3F68DD3222DF107F6DBB0B8BC2F,
+	Game_EndTurn_mEB9CA0B7521C958A5C986B6096D51F2B74C6B0F4,
+	Game_UseMove_m80AA2D409F9F36C16A6AF5FDD7915A78AD705FD8,
+	Game_CheckGameEnd_m3A9B434009842A3EC8DA75DA8C1BC416AB55C436,
 	Game_DelayedDeal_m5F7D56B4A9F24FE8D5F7DFD29EF42F6FA2B48128,
 	Game_Deal_m4AD78B7ABDFDAE2231636476BBC27BDDA5B3DEA6,
 	Game_SetSelectedCard_m1ABD6CD64F9C28404A2482FB2F20D5843DF5A972,
@@ -199,18 +220,19 @@ static Il2CppMethodPointer s_methodPointers[69] =
 	Game_PlayerLoses_m15932F20C02DD35AAF93AF96A35F261E4DF5E333,
 	Game_DealerTurn_m029125C757928C7788E233FF1B6E94C50FF8069B,
 	Game__ctor_m22BD482E0EC7CE99133FCF5EEF21DBC98A0BE5C3,
-	U3CDelayedDealU3Ed__23__ctor_mA292A85593E713DB06FFC43807EF634D64266A17,
-	U3CDelayedDealU3Ed__23_System_IDisposable_Dispose_m6C6139BCB09FFE7DEA7CBC5D84736A702EE58603,
-	U3CDelayedDealU3Ed__23_MoveNext_m5506432AAE4B78392982CAD734334374DAA1B139,
-	U3CDelayedDealU3Ed__23_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mCF4350DD7698E89B8DC5A9C8B46449D4BC3DF2E2,
-	U3CDelayedDealU3Ed__23_System_Collections_IEnumerator_Reset_mB4D99A67CBE7C18AE7904F99B2B964F2800D9B30,
-	U3CDelayedDealU3Ed__23_System_Collections_IEnumerator_get_Current_mF159F95857FAC59984EFFD834AD0611A4509DBB7,
-	U3CDealerTurnU3Ed__35__ctor_m372EF614CE830F8A8BD5A5B3F8E97C885F90A843,
-	U3CDealerTurnU3Ed__35_System_IDisposable_Dispose_m3B612EE776AAB4D5A76BCB5AA26CD105CB734C6E,
-	U3CDealerTurnU3Ed__35_MoveNext_mC77147F21560F6F97269F4A7A43E4F8C1E73563B,
-	U3CDealerTurnU3Ed__35_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mDD74746E8170C64A4DE49E1EFEDB18A604E0E29D,
-	U3CDealerTurnU3Ed__35_System_Collections_IEnumerator_Reset_m574E1042D61DF7971E22A97587DD9DF6DA44DEE5,
-	U3CDealerTurnU3Ed__35_System_Collections_IEnumerator_get_Current_m360154DBB8EC2A97676FF825A08DDD6355FEB9F9,
+	Game__cctor_mC8BD84E58390524723FED3A5E64AA55D118F2A19,
+	U3CDelayedDealU3Ed__34__ctor_m4057C1FED35800C92B15FD48AD668106E9773BF8,
+	U3CDelayedDealU3Ed__34_System_IDisposable_Dispose_mAD126344DBC346AA387B804AA51C10BDFECE559A,
+	U3CDelayedDealU3Ed__34_MoveNext_mCA0A6A5D3BE894CB1B695A7B2E66844B430A562D,
+	U3CDelayedDealU3Ed__34_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m5462A6C3891CA039B3173C03DA5E588672AF4D9F,
+	U3CDelayedDealU3Ed__34_System_Collections_IEnumerator_Reset_m56BB11D9F3EFE63B3E76E2F905EA9EC8F522D996,
+	U3CDelayedDealU3Ed__34_System_Collections_IEnumerator_get_Current_m6E95DD53A907A568D73904A5AD87EB77B46D7821,
+	U3CDealerTurnU3Ed__46__ctor_m68C855543C6357B1CC7A95917DF6343C5066C0EB,
+	U3CDealerTurnU3Ed__46_System_IDisposable_Dispose_m435CB2A6E1FE8D0C85F383676D93A9D2EABC9B7A,
+	U3CDealerTurnU3Ed__46_MoveNext_m88D1607491B43021C04BFE00C466E7B15B5F6FC7,
+	U3CDealerTurnU3Ed__46_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m7B2B2CC4418486D4A13C7B3BC4213D96FE7192A2,
+	U3CDealerTurnU3Ed__46_System_Collections_IEnumerator_Reset_m2CBEC431AC43DFA02A142FE1973ED91B6D66F998,
+	U3CDealerTurnU3Ed__46_System_Collections_IEnumerator_get_Current_mAFC1514B554EB59ED9F5C30C3C55E4D869D598AA,
 	Lane_Update_m78C77718DB223E7F6C8FF164ACD1399FCDF9AB01,
 	Lane_Awake_m56CD889A531F3C7257C3EF1F08825451FF899CD9,
 	Lane_AddCard_m54BE89224E3DAC141A3910F4C2F9C6350858993C,
@@ -221,8 +243,10 @@ static Il2CppMethodPointer s_methodPointers[69] =
 	Lane_RevealAll_mDDD5E0BAC5AAA49D0673A53BF27147C24E8EB3FC,
 	Lane_Clear_mE5868293611903693FF0F6324F7E3918DFA143C4,
 	Lane__ctor_m429A1FF8F33D7D8793D9D568809A85C48888BE2B,
+	RotateOnP2_Update_m7AF52B0E7479CAAC5FFD8378A6412E9F83E4E9D0,
+	RotateOnP2__ctor_m073C2A68E90D64E4579A8B431D141460B92F8CD1,
 };
-static const int32_t s_InvokerIndices[69] = 
+static const int32_t s_InvokerIndices[77] = 
 {
 	3433,
 	3433,
@@ -257,6 +281,11 @@ static const int32_t s_InvokerIndices[69] =
 	2796,
 	3433,
 	3433,
+	3433,
+	3433,
+	3433,
+	3433,
+	3433,
 	3340,
 	3433,
 	2796,
@@ -271,6 +300,7 @@ static const int32_t s_InvokerIndices[69] =
 	3340,
 	3340,
 	3433,
+	5123,
 	2779,
 	3433,
 	3280,
@@ -293,12 +323,14 @@ static const int32_t s_InvokerIndices[69] =
 	3433,
 	3433,
 	3433,
+	3433,
+	3433,
 };
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	69,
+	77,
 	s_methodPointers,
 	0,
 	NULL,

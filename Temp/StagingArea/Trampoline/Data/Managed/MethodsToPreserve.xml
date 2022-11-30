@@ -8,7 +8,10 @@
 			<method name="DiscardTopCard"/>
 		</type>
 		<type fullname="Game">
+			<method name="EndTurn"/>
 			<method name="TradeCardWithDiscard"/>
+			<method name="UseMove"/>
+			<method name="UseMove"/>
 		</type>
 	</assembly>
 </linker>

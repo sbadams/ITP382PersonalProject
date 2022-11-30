@@ -11,7 +11,7 @@ public class Lane : MonoBehaviour
     public int Score;
     private TextMeshProUGUI scoreText;
 
-    List<Card> m_cards = new List<Card>();
+    public List<Card> m_cards = new List<Card>();
 
     private void Update()
     {
